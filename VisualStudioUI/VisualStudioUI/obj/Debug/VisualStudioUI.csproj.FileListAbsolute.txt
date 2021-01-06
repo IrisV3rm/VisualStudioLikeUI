@@ -1,0 +1,9 @@
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\bin\Debug\VisualStudioUI.exe.config
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\bin\Debug\VisualStudioUI.exe
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\bin\Debug\VisualStudioUI.pdb
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.csprojAssemblyReference.cache
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.Properties.Resources.resources
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.csproj.GenerateResource.cache
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.csproj.CoreCompileInputs.cache
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.exe
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.pdb
