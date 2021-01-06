@@ -7,3 +7,9 @@ E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\Vis
 E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.csproj.CoreCompileInputs.cache
 E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.exe
 E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.pdb
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\bin\Debug\ScintillaNET.xml
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.Main.resources
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.csproj.Fody.CopyLocal.cache
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.csproj.CopyComplete
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.Controls.IrisScintillaFindReplace.resources
+E:\Sources\C#\Random Roblox Shit\PublicUIs\VisualStudioLikeUI\VisualStudioUI\VisualStudioUI\obj\Debug\VisualStudioUI.Controls.IrisTabControl.resources

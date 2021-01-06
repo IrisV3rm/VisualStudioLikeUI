@@ -1,7 +1,7 @@
 ﻿
 namespace VisualStudioUI
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,43 @@ namespace VisualStudioUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.irisTabControl1 = new VisualStudioUI.Controls.IrisTabControl();
+            this.SuspendLayout();
+            // 
+            // irisTabControl1
+            // 
+            this.irisTabControl1.ButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.irisTabControl1.Location = new System.Drawing.Point(171, 123);
+            this.irisTabControl1.Name = "irisTabControl1";
+            this.irisTabControl1.RibbonColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
+            this.irisTabControl1.RibbonDock = System.Windows.Forms.DockStyle.Bottom;
+            this.irisTabControl1.RibbonHeight = 3;
+            this.irisTabControl1.Size = new System.Drawing.Size(368, 290);
+            this.irisTabControl1.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.irisTabControl1.TabIndex = 0;
+            this.irisTabControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
+            this.irisTabControl1.TopClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(180)))), ((int)(((byte)(200)))));
+            this.irisTabControl1.TopHpverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(140)))));
+            this.irisTabControl1.TopPannelColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            // 
+            // Main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.ClientSize = new System.Drawing.Size(814, 465);
+            this.Controls.Add(this.irisTabControl1);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "Main";
+            this.Text = "Main";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Controls.IrisTabControl irisTabControl1;
     }
 }
 
