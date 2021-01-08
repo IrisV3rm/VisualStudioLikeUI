@@ -32,14 +32,14 @@ namespace VisualStudioUI.Controls
             this.components = new System.ComponentModel.Container();
             this.BackDrop = new System.Windows.Forms.Panel();
             this.Container = new System.Windows.Forms.Panel();
+            this.BigRibbon = new System.Windows.Forms.Panel();
             this.ButtonHolder = new System.Windows.Forms.Panel();
-            this.AddTab = new System.Windows.Forms.Button();
+            this.AddTab = new NoFocusCueButton();
             this.ScrollBar = new System.Windows.Forms.Panel();
             this.MainStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RenameBox = new System.Windows.Forms.ToolStripTextBox();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BigRibbon = new System.Windows.Forms.Panel();
             this.BackDrop.SuspendLayout();
             this.ButtonHolder.SuspendLayout();
             this.MainStrip.SuspendLayout();
@@ -59,10 +59,19 @@ namespace VisualStudioUI.Controls
             // Container
             // 
             this.Container.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Container.Location = new System.Drawing.Point(0, 32);
+            this.Container.Location = new System.Drawing.Point(0, 23);
             this.Container.Name = "Container";
-            this.Container.Size = new System.Drawing.Size(368, 258);
+            this.Container.Size = new System.Drawing.Size(368, 267);
             this.Container.TabIndex = 0;
+            // 
+            // BigRibbon
+            // 
+            this.BigRibbon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BigRibbon.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BigRibbon.Location = new System.Drawing.Point(0, 21);
+            this.BigRibbon.Name = "BigRibbon";
+            this.BigRibbon.Size = new System.Drawing.Size(368, 2);
+            this.BigRibbon.TabIndex = 0;
             // 
             // ButtonHolder
             // 
@@ -72,7 +81,7 @@ namespace VisualStudioUI.Controls
             this.ButtonHolder.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonHolder.Location = new System.Drawing.Point(0, 0);
             this.ButtonHolder.Name = "ButtonHolder";
-            this.ButtonHolder.Size = new System.Drawing.Size(368, 30);
+            this.ButtonHolder.Size = new System.Drawing.Size(368, 21);
             this.ButtonHolder.TabIndex = 1;
             this.ButtonHolder.DragOver += new System.Windows.Forms.DragEventHandler(this.ButtonHolder_DragOver);
             // 
@@ -87,7 +96,7 @@ namespace VisualStudioUI.Controls
             this.AddTab.Location = new System.Drawing.Point(0, 0);
             this.AddTab.MaximumSize = new System.Drawing.Size(35, 35);
             this.AddTab.Name = "AddTab";
-            this.AddTab.Size = new System.Drawing.Size(35, 30);
+            this.AddTab.Size = new System.Drawing.Size(21, 21);
             this.AddTab.TabIndex = 99;
             this.AddTab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.AddTab.UseVisualStyleBackColor = true;
@@ -141,15 +150,6 @@ namespace VisualStudioUI.Controls
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // BigRibbon
-            // 
-            this.BigRibbon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.BigRibbon.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BigRibbon.Location = new System.Drawing.Point(0, 30);
-            this.BigRibbon.Name = "BigRibbon";
-            this.BigRibbon.Size = new System.Drawing.Size(368, 2);
-            this.BigRibbon.TabIndex = 0;
-            // 
             // IrisTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,7 +171,7 @@ namespace VisualStudioUI.Controls
         private new System.Windows.Forms.Panel Container;
         private System.Windows.Forms.Panel ScrollBar;
         public System.Windows.Forms.Panel ButtonHolder;
-        public System.Windows.Forms.Button AddTab;
+        public NoFocusCueButton AddTab;
         private System.Windows.Forms.ContextMenuStrip MainStrip;
         private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;

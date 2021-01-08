@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CustomStrip.cs" />
     <Compile Include="Controls\IrisScintillaFindReplace.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +93,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -106,6 +108,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_visual_studio_31px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloseButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MinimizeButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_go_back_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_circled_right_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAll_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Backwards_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forwards_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenFolder_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveStatusBar4_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Undo_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Redo_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Redo_16x1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />

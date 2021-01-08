@@ -14,25 +14,26 @@ namespace VisualStudioUI.Controls
 {
     public partial class IrisTabControl : UserControl
     {
-        private Color color = Color.FromArgb(45, 45, 45);
-        private Color hovercolor = Color.FromArgb(0, 0, 140);
-        private Color clickcolor = Color.FromArgb(160, 180, 200);
-        private Color textcolor = Color.FromArgb(158, 158, 158);
-        private Color buttonbackcolor = Color.FromArgb(60, 60, 60);
-        private Color ribbon = Color.FromArgb(10, 132, 255);
-        private Color TabBColor = Color.FromArgb(60, 60, 60);
+        public class NoFocusCueButton : Button
+        {
+            protected override bool ShowFocusCues
+            {
+                get
+                {
+                    return false;
+                }
+            }
+
+            public override void NotifyDefault(bool value)
+            {
+                base.NotifyDefault(false);
+            }
+        }
+
         private int TabIndexImpl = 0;
         private int ribbonheight = 3;
         private DockStyle dockmethod = DockStyle.Bottom;
         private Point contextpoint;
-
-        public Color TopPannelColor { get { return color; } set { color = value; Invalidate(); } }
-        public Color TopHpverColor { get { return hovercolor; } set { hovercolor = value; Invalidate(); } }
-        public Color TopClickColor { get { return clickcolor; } set { clickcolor = value; Invalidate(); } }
-        public Color TextColor { get { return textcolor; } set { textcolor = value; Invalidate(); } }
-        public Color ButtonBackColor { get { return buttonbackcolor; } set { buttonbackcolor = value; Invalidate(); } }
-        public Color RibbonColor { get { return ribbon; } set { ribbon = value; Invalidate(); } }
-        public Color TabBackColor { get { return TabBColor; } set { TabBColor = value; Invalidate(); } }
         public int RibbonHeight { get { return ribbonheight; } set { ribbonheight = value; Invalidate(); } }
         public DockStyle RibbonDock { get { return dockmethod; } set { dockmethod = value; Invalidate(); } }
 
@@ -48,12 +49,11 @@ namespace VisualStudioUI.Controls
 
         private Editor editor = new Editor();
 
+        Dictionary<Button, Rectangle> Recs = new Dictionary<Button, Rectangle>();
+
         public IrisTabControl()
         {
             InitializeComponent();
-            Container.BackColor = buttonbackcolor;
-            ButtonHolder.BackColor = TopPannelColor;
-            AddTab.ForeColor = textcolor;
             ButtonHolder.HorizontalScroll.Maximum = 500;
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.OptimizedDoubleBuffer, true);
             DoubleBuffered = true;
@@ -86,7 +86,9 @@ namespace VisualStudioUI.Controls
             NewButton.Dock = DockStyle.Left;
             NewButton.AutoSize = true;
             NewButton.Padding = new Padding(0, 0, 4, 0);
+            NewButton.Text = Name + "   ";
             NewButton.TabIndex = TabIndexImpl++;
+            NewButton.ContextMenuStrip = MainStrip;
             NewButton.SizeChanged += NewButton_SizeChanged;
             NewButton.MouseUp += NewButton_MouseUp;
             NewButton.Click += NewButton_Click;
@@ -94,6 +96,7 @@ namespace VisualStudioUI.Controls
             NewButton.MouseClick += NewButton_MouseClick;
             NewButton.KeyDown += NewButton_KeyDown;
             NewButton.MouseMove += NewButton_MouseMove;
+            NewButton.Paint += NewButton_Paint;
 
             Button CloseButton = new Button();
             CloseButton.Size = new Size(0, 0);
@@ -101,7 +104,6 @@ namespace VisualStudioUI.Controls
 
             Panel Ribbon = new Panel();
             NewButton.Controls.Add(Ribbon);
-            Ribbon.BackColor = ribbon;
             Ribbon.Location = new Point(635, 365);
             Ribbon.Name = "Ribbon";
             Ribbon.Size = new Size(NewButton.Width, ribbonheight);
@@ -110,7 +112,6 @@ namespace VisualStudioUI.Controls
             Panel Tab = new Panel();
             Container.Controls.Add(Tab);
             Tab.Dock = DockStyle.Fill;
-            Tab.BackColor = TabBColor;
 
             Tab.Controls.Add(editor.NewScintilla(Script));
 
@@ -159,6 +160,34 @@ namespace VisualStudioUI.Controls
 
 
             return NewButton;
+        }
+
+        private void NewButton_Paint(object sender, PaintEventArgs e)
+        {
+            Rectangle Out;
+            SolidBrush drawBrush = new SolidBrush(Color.White);
+
+            FontFamily fontFamily = new FontFamily("Arial");
+            Font font = new Font(
+               fontFamily,
+               20,
+               FontStyle.Regular,
+               GraphicsUnit.Pixel);
+
+            StringFormat drawformat = new StringFormat();
+            drawformat.Alignment = StringAlignment.Center;
+            drawformat.LineAlignment = StringAlignment.Center;
+
+            e.Graphics.DrawString("x", font, drawBrush, (sender as Button).Width - 18, -0.8F);
+
+            if (Recs.TryGetValue((sender as Button), out Out))
+            {
+                Recs[(sender as Button)] = new Rectangle(new Point((sender as Button).Right - 18, -1), new Size(17, 17));
+            }
+            else
+            {
+                Recs.Add((sender as Button), new Rectangle(new Point((sender as Button).Right - 18, -1), new Size(17, 17)));
+            }
         }
 
         private void NewButton_MouseMove(object sender, MouseEventArgs e)
@@ -263,10 +292,10 @@ namespace VisualStudioUI.Controls
                     try
                     {
                         TabButton.Controls[1].Visible = false;
-                        TabButton.BackColor = buttonbackcolor;
+                        TabButton.BackColor = Color.FromArgb(45,45,48);
 
                         Button CB = TabButton.Controls[0] as Button;
-                        CB.BackColor = buttonbackcolor;
+                        CB.BackColor = Color.FromArgb(45, 45, 48);
 
                         Tabs[ButtonClicked].Visible = true;
                     }
@@ -278,10 +307,10 @@ namespace VisualStudioUI.Controls
                 else
                 {
                     TabButton.Controls[1].Visible = true;
-                    TabButton.BackColor = clickcolor;
+                    TabButton.BackColor = Color.FromArgb(0, 122, 204);
 
                     Button CB = TabButton.Controls[0] as Button;
-                    CB.BackColor = clickcolor;
+                    CB.BackColor = Color.FromArgb(0, 122, 204);
                 }
             }
 
@@ -333,19 +362,24 @@ namespace VisualStudioUI.Controls
             NewButton_Click(sender, e);
             SelectedTab = (Button)sender;
             PreDraggedTab = null;
+            contextpoint = Cursor.Position;
 
-            if (e.Button == MouseButtons.Right)
-            {
-                MainStrip.Show(Cursor.Position);
-            }
         }
 
         private void NewButton_MouseDown(object sender, MouseEventArgs e)
         {
+            if (Recs[(sender as Button)].Contains(e.Location))
+            {
+                Console.WriteLine("clicked");
+                CloseButton_Click(sender, e);
+                return;
+            }
+
             (sender as Button).PerformClick();
             PreDraggedTab = (Button)sender;
             BackupSelectedTab = (Button)sender;
         }
+
         private void CloseButton_Click(object sender, EventArgs e)
         {
             try
@@ -534,7 +568,7 @@ namespace VisualStudioUI.Controls
         {
             renameToolStripMenuItem.Visible = false;
             RenameBox.Visible = true;
-            MainStrip.Show(contextpoint);
+            MainStrip.Show(Cursor.Position);
         }
 
         private void RenameBox_TextChanged(object sender, EventArgs e)
@@ -574,8 +608,8 @@ namespace VisualStudioUI.Controls
             drawformat.Alignment = StringAlignment.Center;
             drawformat.LineAlignment = StringAlignment.Center;
 
-            float X = 8F;
-            float Y = 2F;
+            float X = 1F;
+            float Y = -1F;
 
             e.Graphics.DrawString(drawString, DrawFont, drawBrush, new PointF(X, Y));
         }
@@ -643,7 +677,7 @@ namespace VisualStudioUI.Controls
             scintilla.Styles[Style.Lua.Word2].ForeColor = Color.FromArgb(69, 180, 152); // Globals
             scintilla.Styles[Style.Lua.Word3].ForeColor = Color.FromArgb(103, 216, 218); // Functions
             scintilla.Styles[Style.Lua.Word4].ForeColor = Color.FromArgb(184, 215, 163); // Enums
-            scintilla.Styles[Style.Lua.Word5].ForeColor = Color.FromArgb(0, 119, 119); // ScriptwareFunctions
+            scintilla.Styles[Style.Lua.Word5].ForeColor = Color.FromArgb(0, 119, 119); // Exploit Funcs
             scintilla.SetKeywords((int)KeywordTypes.Logic, "and break do else elseif end false for function if in local nil not or repeat return then true until while continue [nonamecall]");
             scintilla.SetKeywords((int)KeywordTypes.Globals, "__add __call __concat __div __eq __index __le __len __lt __metatable __mod __mode __mul __newindex __pow __sub __tonumber __tostring __unm _G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine coroutine.create coroutine.resume coroutine.running coroutine.status create resume running status wrap yield debug getfenv gethook getinfo getlocal getmetatable getregistry getupvalue setfenv sethook setlocal setmetatable setupvalue traceback byte char dump find format gmatch gsub close flush input lines open output popen read stderr stdin stdout tmpfile type write abs acos asin atan atan2 ceil cos cosh deg exp floor fmod frexp huge ldexp log log10 max min modf pi pow rad random randomseed sin sinh sqrt tan tanh clock date difftime execute exit getenv remove rename setlocale time tmpname cpath loaded loaders loadlib path preload seeall len lower match rep reverse sub upper concat insert maxn remove sort coroutine.wrap coroutine.yield debug debug.debug debug.getfenv debug.gethook debug.getinfo debug.getlocal debug.getmetatable debug.getregistry debug.getupvalue debug.getupvalues debug.setfenv debug.sethook debug.setlocal debug.setmetatable debug.setupvalue debug.traceback io io.close io.flush io.input io.lines io.open io.output io.popen io.read io.stderr io.stdin io.stdout io.tmpfile io.type io.write math math.abs math.acos math.asin math.atan math.atan2 math.ceil math.cos math.cosh math.deg math.exp math.floor math.fmod math.frexp math.huge math.ldexp math.log math.log10 math.max math.min math.modf math.pi math.pow math.rad math.random math.randomseed math.sin math.sinh math.sqrt math.tan math.tanh os os.clock os.date os.difftime os.execute os.exit os.getenv os.remove os.rename os.setlocale os.time os.tmpname string string.byte string.char string.dump string.find string.format string.gmatch string.gsub string.len string.lower string.match string.rep string.reverse string.sub string.upper table table.concat table.insert table.maxn table.remove table.sort delay DebuggerManager elapsedTime LoadLibrary PluginManager printidentity require settings spawn stats tick time typeof UserSettings version wait warn bit32 bit32.arshift bit32.band bit32.bnot bit32.bor bit32.btest bit32.bxor bit32.extract bit32.replace bit32.lrotate bit32.lshift bi32.rrotate bit32.rshift utf8 utf8.codes utf8.char utf8.codepoint utf8.len utf8.offset utf8.graphemes utf8.nfcnormalize utf8.nfdnromalize utf8.charpattern Axes.new Axes BrickColor.Blue BrickColor.White BrickColor.Yellow BrickColor.Red BrickColor.Gray BrickColor.palette BrickColor.New BrickColor.Black BrickColor.Green BrickColor.Random BrickColor.DarkGray BrickColor.random BrickColor.new CFrame.lookAt CFrame.fromMatrix CFrame.fromAxisAngle CFrame.fromOrientation CFrame.fromEulerAnglesXYZ CFrame.Angles CFrame.fromEulerAnglesYXZ CFrame.new Color3.fromHSV Color3.toHSV Color3.fromRGB Color3.new ColorSequence.new DateTime.fromUnixTimestamp DateTime.now DateTime.fromIsoDate DateTime.fromUnixTimestampMillis DateTime.fromLocalTime DateTime.fromUniversalTime DockWidgetPluginGuiInfo.new Faces.new Instance.new NumberRange.new NumberSequence.new NumberSequenceKeypoint.new PathWaypoint.new PhysicalProperties.new Random.new Ray.new RaycastParams.new Rect.new RBXScriptSignal RBXScriptConnection Region3.new Region3int16.new TweenInfo.new UDim.new UDim2.fromOffset UDim2.fromScale UDim2.new Vector2.new Vector2int16.new Vector3.FromNormalId Vector3.FromAxis Vector3.fromAxis Vector3.fromNormalId Vector3.new Vector3int16.new Axes BrickColor CFrame Color3 ColorSequence ColorSequenceKeypoint DateTime DockWidgetPluginGuiInfo Enum EnumItem Enums Faces Instance NumberRange NumberSequence NumberSequenceKeypoint PathWaypoint PhysicalProperties Random Ray RaycastParams RaycastResult RBXScriptConnection RBXScriptSignal Rect Region3 Region3int16 TweenInfo UDim UDim2 Vector2 Vector2int16 Vector3 Vector3int16");
             scintilla.SetKeywords((int)KeywordTypes.Functions, "setnamecallmethod getnamecallmethod setfflag setclipboard appendfile writefile readfile checkcaller islclosure mousemoveabs mousemoverel mouse1release mouse1press mouse2click mouse1release mouse1press mouse1click isreadonly setreadonly setrawmetatable setrawmetatable debug.setmetatable getrawmetatable debug.getrawmetatable firetouchinterest fireclickdetector firesignal getconnections getnilinstances getgc getreg getrenv getgenv hookfunction hookfunc getregistry setstack getstack setconstant getconstant getconstants setupvalues getupvalues");
