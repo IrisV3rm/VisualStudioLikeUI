@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VisualStudioUI.Controls;
 
 namespace VisualStudioUI.Controls
 {
@@ -37,19 +38,17 @@ namespace VisualStudioUI.Controls
         public int RibbonHeight { get { return ribbonheight; } set { ribbonheight = value; Invalidate(); } }
         public DockStyle RibbonDock { get { return dockmethod; } set { dockmethod = value; Invalidate(); } }
 
-        private Button PreDraggedTab;
-        public static Button TBBb = new Button();
-        public static Button SelectedTab { get { return TBBb; } set { TBBb = value; } }
-        public static Button TBBbd = new Button();
-        public static Button BackupSelectedTab { get { return TBBbd; } set { TBBbd = value; } }
+        private NoFocusCueButton PreDraggedTab;
+        public static NoFocusCueButton TBBb = new NoFocusCueButton();
+        public static NoFocusCueButton SelectedTab { get { return TBBb; } set { TBBb = value; } }
+        public static NoFocusCueButton TBBbd = new NoFocusCueButton();
+        public static NoFocusCueButton BackupSelectedTab { get { return TBBbd; } set { TBBbd = value; } }
 
-        public static List<Button> closeButtons = new List<Button> { };
+        public static List<NoFocusCueButton> closeButtons = new List<NoFocusCueButton> { };
 
-        public static Dictionary<Button, Panel> Tabs = new Dictionary<Button, Panel>();
+        public static Dictionary<NoFocusCueButton, Panel> Tabs = new Dictionary<NoFocusCueButton, Panel>();
 
         private Editor editor = new Editor();
-
-        Dictionary<Button, Rectangle> Recs = new Dictionary<Button, Rectangle>();
 
         public IrisTabControl()
         {
@@ -59,7 +58,7 @@ namespace VisualStudioUI.Controls
             DoubleBuffered = true;
         }
 
-        public Button CreateTab(string Name = "Script", string Script = "")
+        public NoFocusCueButton CreateTab(string Name = "Script", string Script = "")
         {
             IrisScintillaFindReplace FindReplace = new IrisScintillaFindReplace();
             if (Name == "Script")
@@ -75,7 +74,7 @@ namespace VisualStudioUI.Controls
                 Name = $"{Name}";
             }
 
-            Button NewButton = new Button();
+            NoFocusCueButton NewButton = new NoFocusCueButton();
             NewButton.BackColor = Color.FromArgb(0, 122, 204);
             NewButton.FlatAppearance.BorderSize = 0;
             NewButton.FlatStyle = FlatStyle.Flat;
@@ -96,10 +95,15 @@ namespace VisualStudioUI.Controls
             NewButton.MouseClick += NewButton_MouseClick;
             NewButton.KeyDown += NewButton_KeyDown;
             NewButton.MouseMove += NewButton_MouseMove;
-            NewButton.Paint += NewButton_Paint;
 
-            Button CloseButton = new Button();
-            CloseButton.Size = new Size(0, 0);
+            NoFocusCueButton CloseButton = new NoFocusCueButton();
+            CloseButton.Size = new Size(15, 15);
+            CloseButton.Dock = DockStyle.Right;
+            CloseButton.FlatStyle = FlatStyle.Flat;
+            CloseButton.FlatAppearance.BorderSize = 0;
+            CloseButton.Paint += NewButton_Paint;
+            CloseButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 122, 204);
+            CloseButton.MouseClick += CloseButton_Click;
             NewButton.Controls.Add(CloseButton);
 
             Panel Ribbon = new Panel();
@@ -164,7 +168,6 @@ namespace VisualStudioUI.Controls
 
         private void NewButton_Paint(object sender, PaintEventArgs e)
         {
-            Rectangle Out;
             SolidBrush drawBrush = new SolidBrush(Color.White);
 
             FontFamily fontFamily = new FontFamily("Arial");
@@ -178,16 +181,7 @@ namespace VisualStudioUI.Controls
             drawformat.Alignment = StringAlignment.Center;
             drawformat.LineAlignment = StringAlignment.Center;
 
-            e.Graphics.DrawString("x", font, drawBrush, (sender as Button).Width - 18, -0.8F);
-
-            if (Recs.TryGetValue((sender as Button), out Out))
-            {
-                Recs[(sender as Button)] = new Rectangle(new Point((sender as Button).Right - 18, -1), new Size(17, 17));
-            }
-            else
-            {
-                Recs.Add((sender as Button), new Rectangle(new Point((sender as Button).Right - 18, -1), new Size(17, 17)));
-            }
+            e.Graphics.DrawString("×", font, drawBrush, -1.25F, -1F);
         }
 
         private void NewButton_MouseMove(object sender, MouseEventArgs e)
@@ -275,8 +269,8 @@ namespace VisualStudioUI.Controls
         private void NewButton_Click(object sender, EventArgs e)
         {
             bool ActivePage = false;
-            Button ButtonClicked = (Button)sender;
-            SelectedTab = ButtonClicked as Button;
+            NoFocusCueButton ButtonClicked = (NoFocusCueButton)sender;
+            SelectedTab = ButtonClicked as NoFocusCueButton;
 
 
             foreach (Panel Page in Tabs.Values)
@@ -284,7 +278,7 @@ namespace VisualStudioUI.Controls
                 Page.Visible = false;
             }
 
-            foreach (Button TabButton in Tabs.Keys)
+            foreach (NoFocusCueButton TabButton in Tabs.Keys)
             {
 
                 if (TabButton != ButtonClicked)
@@ -294,7 +288,7 @@ namespace VisualStudioUI.Controls
                         TabButton.Controls[1].Visible = false;
                         TabButton.BackColor = Color.FromArgb(45,45,48);
 
-                        Button CB = TabButton.Controls[0] as Button;
+                        NoFocusCueButton CB = TabButton.Controls[0] as NoFocusCueButton;
                         CB.BackColor = Color.FromArgb(45, 45, 48);
 
                         Tabs[ButtonClicked].Visible = true;
@@ -309,7 +303,7 @@ namespace VisualStudioUI.Controls
                     TabButton.Controls[1].Visible = true;
                     TabButton.BackColor = Color.FromArgb(0, 122, 204);
 
-                    Button CB = TabButton.Controls[0] as Button;
+                    NoFocusCueButton CB = TabButton.Controls[0] as NoFocusCueButton;
                     CB.BackColor = Color.FromArgb(0, 122, 204);
                 }
             }
@@ -324,7 +318,7 @@ namespace VisualStudioUI.Controls
             }
             if (!ActivePage)
             {
-                foreach (Button tabbutton in Tabs.Keys)
+                foreach (NoFocusCueButton tabbutton in Tabs.Keys)
                 {
                     if (tabbutton.Controls[1].Visible)
                     {
@@ -360,7 +354,7 @@ namespace VisualStudioUI.Controls
         private void NewButton_MouseUp(object sender, MouseEventArgs e)
         {
             NewButton_Click(sender, e);
-            SelectedTab = (Button)sender;
+            SelectedTab = (NoFocusCueButton)sender;
             PreDraggedTab = null;
             contextpoint = Cursor.Position;
 
@@ -368,16 +362,9 @@ namespace VisualStudioUI.Controls
 
         private void NewButton_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Recs[(sender as Button)].Contains(e.Location))
-            {
-                Console.WriteLine("clicked");
-                CloseButton_Click(sender, e);
-                return;
-            }
-
-            (sender as Button).PerformClick();
-            PreDraggedTab = (Button)sender;
-            BackupSelectedTab = (Button)sender;
+            (sender as NoFocusCueButton).PerformClick();
+            PreDraggedTab = (NoFocusCueButton)sender;
+            BackupSelectedTab = (NoFocusCueButton)sender;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -394,7 +381,7 @@ namespace VisualStudioUI.Controls
                 {
                     if (ButtonHolder.Controls[indexofbutton] != null)
                     {
-                        (ButtonHolder.Controls[indexofbutton] as Button).PerformClick();
+                        (ButtonHolder.Controls[indexofbutton] as NoFocusCueButton).PerformClick();
                     }
                 }
                 else
@@ -406,7 +393,7 @@ namespace VisualStudioUI.Controls
             {
                 if (ButtonHolder.Controls.Count > 1)
                 {
-                    (ButtonHolder.Controls[1] as Button).PerformClick();
+                    (ButtonHolder.Controls[1] as NoFocusCueButton).PerformClick();
                 }
             }
 
@@ -453,7 +440,7 @@ namespace VisualStudioUI.Controls
                     {
                         if (ButtonHolder.Controls[indexofbutton] != null)
                         {
-                            (ButtonHolder.Controls[indexofbutton] as Button).PerformClick();
+                            (ButtonHolder.Controls[indexofbutton] as NoFocusCueButton).PerformClick();
                         }
                     }
                     else
@@ -499,7 +486,7 @@ namespace VisualStudioUI.Controls
                 {
                     using (System.IO.StreamReader Reader = new System.IO.StreamReader(open.FileName))
                     {
-                        Button Tab = CreateTab(open.SafeFileName, Reader.ReadToEnd());
+                        NoFocusCueButton Tab = CreateTab(open.SafeFileName, Reader.ReadToEnd());
                         Tab.PerformClick();
                         SelectedTab = Tab;
 
@@ -527,7 +514,7 @@ namespace VisualStudioUI.Controls
             }
             catch { }
 
-            foreach (Button Tab in Tabs.Keys)
+            foreach (NoFocusCueButton Tab in Tabs.Keys)
             {
                 if (Tabs[Tab].Controls[0].Text.Length == 0 || Tabs[Tab].Controls[0].Text == "")
                     return;
@@ -541,7 +528,7 @@ namespace VisualStudioUI.Controls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Button Button = CreateTab();
+            NoFocusCueButton Button = CreateTab();
             SelectedTab = Button;
             BackupSelectedTab = Button;
             Button.PerformClick();
@@ -551,7 +538,7 @@ namespace VisualStudioUI.Controls
         {
             if (e.Button == MouseButtons.Right)
             {
-                SelectedTab = (sender as Button);
+                SelectedTab = (sender as NoFocusCueButton);
                 BackupSelectedTab = SelectedTab;
                 MainStrip.Show(Cursor.Position);
                 contextpoint = Cursor.Position;
@@ -614,6 +601,7 @@ namespace VisualStudioUI.Controls
             e.Graphics.DrawString(drawString, DrawFont, drawBrush, new PointF(X, Y));
         }
     }
+}
 
     public class Editor
     {
@@ -735,4 +723,4 @@ namespace VisualStudioUI.Controls
         }
 
     }
-}
+

@@ -29,7 +29,6 @@ namespace VisualStudioUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.irisTabControl1 = new VisualStudioUI.Controls.IrisTabControl();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +49,6 @@ namespace VisualStudioUI
             this.scriptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,22 +58,13 @@ namespace VisualStudioUI
             this.MinimizeButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
             this.VisIcon = new System.Windows.Forms.PictureBox();
+            this.irisTabControl1 = new VisualStudioUI.Controls.IrisTabControl();
             this.panel1.SuspendLayout();
             this.OtherStrip.SuspendLayout();
             this.TopBar.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisIcon)).BeginInit();
             this.SuspendLayout();
-            // 
-            // irisTabControl1
-            // 
-            this.irisTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.irisTabControl1.Location = new System.Drawing.Point(0, 56);
-            this.irisTabControl1.Name = "irisTabControl1";
-            this.irisTabControl1.RibbonDock = System.Windows.Forms.DockStyle.Bottom;
-            this.irisTabControl1.RibbonHeight = 3;
-            this.irisTabControl1.Size = new System.Drawing.Size(814, 409);
-            this.irisTabControl1.TabIndex = 0;
             // 
             // fileToolStripMenuItem
             // 
@@ -150,8 +138,6 @@ namespace VisualStudioUI
             // OtherStrip
             // 
             this.OtherStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
             this.openFileToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
@@ -188,7 +174,7 @@ namespace VisualStudioUI
             this.helpToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(41, 5);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(206, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(326, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "MainTopStrip";
             // 
@@ -214,12 +200,13 @@ namespace VisualStudioUI
             this.viewToolStripMenuItem2.Name = "viewToolStripMenuItem2";
             this.viewToolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem2.Text = "View";
+            this.viewToolStripMenuItem2.Click += new System.EventHandler(this.viewToolStripMenuItem2_Click);
             // 
             // scriptsToolStripMenuItem
             // 
             this.scriptsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.scriptsToolStripMenuItem.Name = "scriptsToolStripMenuItem";
-            this.scriptsToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.scriptsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.scriptsToolStripMenuItem.Text = "Scripts";
             // 
             // gitToolStripMenuItem2
@@ -228,6 +215,7 @@ namespace VisualStudioUI
             this.gitToolStripMenuItem2.Name = "gitToolStripMenuItem2";
             this.gitToolStripMenuItem2.Size = new System.Drawing.Size(34, 20);
             this.gitToolStripMenuItem2.Text = "Git";
+            this.gitToolStripMenuItem2.Click += new System.EventHandler(this.gitToolStripMenuItem2_Click);
             // 
             // helpToolStripMenuItem2
             // 
@@ -236,25 +224,13 @@ namespace VisualStudioUI
             this.helpToolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem2.Text = "Help";
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = global::VisualStudioUI.Properties.Resources.Backwards_16x;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(28, 20);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Image = global::VisualStudioUI.Properties.Resources.Forwards_16x;
-            this.toolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(28, 20);
-            // 
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Image = global::VisualStudioUI.Properties.Resources.OpenFolder_16x;
             this.openFileToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
             this.openFileToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -262,6 +238,7 @@ namespace VisualStudioUI
             this.saveToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -269,6 +246,7 @@ namespace VisualStudioUI
             this.saveAsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
@@ -276,6 +254,7 @@ namespace VisualStudioUI
             this.undoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // redoToolStripMenuItem
             // 
@@ -283,6 +262,7 @@ namespace VisualStudioUI
             this.redoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
             // executeToolStripMenuItem
             // 
@@ -305,6 +285,7 @@ namespace VisualStudioUI
             this.MinimizeButton.Size = new System.Drawing.Size(46, 32);
             this.MinimizeButton.TabIndex = 6;
             this.MinimizeButton.UseVisualStyleBackColor = true;
+            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
             // 
             // CloseButton
             // 
@@ -319,6 +300,7 @@ namespace VisualStudioUI
             this.CloseButton.Size = new System.Drawing.Size(46, 32);
             this.CloseButton.TabIndex = 4;
             this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // VisIcon
             // 
@@ -328,6 +310,16 @@ namespace VisualStudioUI
             this.VisIcon.Size = new System.Drawing.Size(33, 32);
             this.VisIcon.TabIndex = 2;
             this.VisIcon.TabStop = false;
+            // 
+            // irisTabControl1
+            // 
+            this.irisTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.irisTabControl1.Location = new System.Drawing.Point(0, 56);
+            this.irisTabControl1.Name = "irisTabControl1";
+            this.irisTabControl1.RibbonDock = System.Windows.Forms.DockStyle.Bottom;
+            this.irisTabControl1.RibbonHeight = 3;
+            this.irisTabControl1.Size = new System.Drawing.Size(814, 409);
+            this.irisTabControl1.TabIndex = 0;
             // 
             // Main
             // 
@@ -382,8 +374,6 @@ namespace VisualStudioUI
         private System.Windows.Forms.ToolStripMenuItem scriptsToolStripMenuItem;
         private System.Windows.Forms.Button MinimizeButton;
         private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;

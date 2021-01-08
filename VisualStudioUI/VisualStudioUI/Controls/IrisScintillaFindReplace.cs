@@ -119,7 +119,7 @@ namespace VisualStudioUI.Controls
                     break;
                 case Keys.N:
                     (Parent.Parent.Parent.Parent.Parent as IrisTabControl).CreateTab();
-                    (Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent as Main).ActiveControl = (Parent.Parent.Parent.Parent.Parent as IrisTabControl).GetWorkingEditor();
+                    (Parent.Parent.Parent.Parent.Parent.Parent as Main).ActiveControl = (Parent.Parent.Parent.Parent.Parent as IrisTabControl).GetWorkingEditor();
                     break;
             }
         }
