@@ -98,5 +98,21 @@ namespace VisualStudioUI
         {
             Console.WriteLine(Script);
         }
+        string ScriptData = @"
+true false nil
+while wait() do end
+'yeet'
+[[yeet]]
+-- yeet
+--[[yeet]]
+123456
++-=
+asdasd
+__mod
+";
+        private void Main_Load(object sender, EventArgs e)
+        {
+            irisTabControl1.CreateTab("Script", ScriptData, Editor.SyntaxCopyTypes.Sentinel);
+        }
     }
 }

@@ -41,7 +41,16 @@ namespace VisualStudioUI
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.OtherStrip = new System.Windows.Forms.MenuStrip();
+            this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.executeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TopBar = new System.Windows.Forms.Panel();
+            this.MinimizeButton = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
+            this.VisIcon = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,21 +58,12 @@ namespace VisualStudioUI
             this.scriptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.executeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MinimizeButton = new System.Windows.Forms.Button();
-            this.CloseButton = new System.Windows.Forms.Button();
-            this.VisIcon = new System.Windows.Forms.PictureBox();
             this.irisTabControl1 = new VisualStudioUI.Controls.IrisTabControl();
             this.panel1.SuspendLayout();
             this.OtherStrip.SuspendLayout();
             this.TopBar.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisIcon)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileToolStripMenuItem
@@ -150,80 +150,6 @@ namespace VisualStudioUI
             this.OtherStrip.TabIndex = 0;
             this.OtherStrip.Text = "OtherStrip";
             // 
-            // TopBar
-            // 
-            this.TopBar.Controls.Add(this.MinimizeButton);
-            this.TopBar.Controls.Add(this.CloseButton);
-            this.TopBar.Controls.Add(this.VisIcon);
-            this.TopBar.Controls.Add(this.menuStrip1);
-            this.TopBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopBar.Location = new System.Drawing.Point(0, 0);
-            this.TopBar.Name = "TopBar";
-            this.TopBar.Size = new System.Drawing.Size(814, 32);
-            this.TopBar.TabIndex = 1;
-            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseDown);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem2,
-            this.editToolStripMenuItem2,
-            this.viewToolStripMenuItem2,
-            this.gitToolStripMenuItem2,
-            this.helpToolStripMenuItem2});
-            this.menuStrip1.Location = new System.Drawing.Point(41, 5);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(326, 24);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "MainTopStrip";
-            // 
-            // fileToolStripMenuItem2
-            // 
-            this.fileToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
-            this.fileToolStripMenuItem2.Name = "fileToolStripMenuItem2";
-            this.fileToolStripMenuItem2.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem2.Text = "File";
-            // 
-            // editToolStripMenuItem2
-            // 
-            this.editToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
-            this.editToolStripMenuItem2.Name = "editToolStripMenuItem2";
-            this.editToolStripMenuItem2.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem2.Text = "Edit";
-            // 
-            // viewToolStripMenuItem2
-            // 
-            this.viewToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scriptsToolStripMenuItem});
-            this.viewToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
-            this.viewToolStripMenuItem2.Name = "viewToolStripMenuItem2";
-            this.viewToolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem2.Text = "View";
-            this.viewToolStripMenuItem2.Click += new System.EventHandler(this.viewToolStripMenuItem2_Click);
-            // 
-            // scriptsToolStripMenuItem
-            // 
-            this.scriptsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.scriptsToolStripMenuItem.Name = "scriptsToolStripMenuItem";
-            this.scriptsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.scriptsToolStripMenuItem.Text = "Scripts";
-            // 
-            // gitToolStripMenuItem2
-            // 
-            this.gitToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
-            this.gitToolStripMenuItem2.Name = "gitToolStripMenuItem2";
-            this.gitToolStripMenuItem2.Size = new System.Drawing.Size(34, 20);
-            this.gitToolStripMenuItem2.Text = "Git";
-            this.gitToolStripMenuItem2.Click += new System.EventHandler(this.gitToolStripMenuItem2_Click);
-            // 
-            // helpToolStripMenuItem2
-            // 
-            this.helpToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
-            this.helpToolStripMenuItem2.Name = "helpToolStripMenuItem2";
-            this.helpToolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem2.Text = "Help";
-            // 
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Image = global::VisualStudioUI.Properties.Resources.OpenFolder_16x;
@@ -272,6 +198,19 @@ namespace VisualStudioUI
             this.executeToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.executeToolStripMenuItem.Text = "Execute";
             // 
+            // TopBar
+            // 
+            this.TopBar.Controls.Add(this.MinimizeButton);
+            this.TopBar.Controls.Add(this.CloseButton);
+            this.TopBar.Controls.Add(this.VisIcon);
+            this.TopBar.Controls.Add(this.menuStrip1);
+            this.TopBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopBar.Location = new System.Drawing.Point(0, 0);
+            this.TopBar.Name = "TopBar";
+            this.TopBar.Size = new System.Drawing.Size(814, 32);
+            this.TopBar.TabIndex = 1;
+            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseDown);
+            // 
             // MinimizeButton
             // 
             this.MinimizeButton.Dock = System.Windows.Forms.DockStyle.Right;
@@ -311,6 +250,67 @@ namespace VisualStudioUI
             this.VisIcon.TabIndex = 2;
             this.VisIcon.TabStop = false;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem2,
+            this.editToolStripMenuItem2,
+            this.viewToolStripMenuItem2,
+            this.gitToolStripMenuItem2,
+            this.helpToolStripMenuItem2});
+            this.menuStrip1.Location = new System.Drawing.Point(41, 5);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(206, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "MainTopStrip";
+            // 
+            // fileToolStripMenuItem2
+            // 
+            this.fileToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.fileToolStripMenuItem2.Name = "fileToolStripMenuItem2";
+            this.fileToolStripMenuItem2.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem2.Text = "File";
+            // 
+            // editToolStripMenuItem2
+            // 
+            this.editToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.editToolStripMenuItem2.Name = "editToolStripMenuItem2";
+            this.editToolStripMenuItem2.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem2.Text = "Edit";
+            // 
+            // viewToolStripMenuItem2
+            // 
+            this.viewToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scriptsToolStripMenuItem});
+            this.viewToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.viewToolStripMenuItem2.Name = "viewToolStripMenuItem2";
+            this.viewToolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem2.Text = "View";
+            this.viewToolStripMenuItem2.Click += new System.EventHandler(this.viewToolStripMenuItem2_Click);
+            // 
+            // scriptsToolStripMenuItem
+            // 
+            this.scriptsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.scriptsToolStripMenuItem.Name = "scriptsToolStripMenuItem";
+            this.scriptsToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.scriptsToolStripMenuItem.Text = "Scripts";
+            // 
+            // gitToolStripMenuItem2
+            // 
+            this.gitToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.gitToolStripMenuItem2.Name = "gitToolStripMenuItem2";
+            this.gitToolStripMenuItem2.Size = new System.Drawing.Size(34, 20);
+            this.gitToolStripMenuItem2.Text = "Git";
+            this.gitToolStripMenuItem2.Click += new System.EventHandler(this.gitToolStripMenuItem2_Click);
+            // 
+            // helpToolStripMenuItem2
+            // 
+            this.helpToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.helpToolStripMenuItem2.Name = "helpToolStripMenuItem2";
+            this.helpToolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem2.Text = "Help";
+            // 
             // irisTabControl1
             // 
             this.irisTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -335,15 +335,16 @@ namespace VisualStudioUI
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.OtherStrip.ResumeLayout(false);
             this.OtherStrip.PerformLayout();
             this.TopBar.ResumeLayout(false);
             this.TopBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VisIcon)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VisIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
